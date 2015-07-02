@@ -1,0 +1,47 @@
+/**
+    Xcode Compiler Specification for GCC @GCC_VERSION_MAJOR@.@GCC_VERSION_MINOR@ 
+*/
+
+{   Type = Compiler;
+    Identifier = com.apple.compilers.llvm.gcc@GCC_VERSION_MAJOR@@GCC_VERSION_MINOR@;
+    BasedOn = com.apple.compilers.gcc.@GCC_VERSION_MAJOR@_@GCC_VERSION_MINOR@;
+    Name = "Mac Ports GCC @GCC_VERSION_MAJOR@.@GCC_VERSION_MINOR@";
+    Version = "@GCC_VERSION_MAJOR@.@GCC_VERSION_MINOR@";
+    Description = "Mac Ports GCC Compiler @GCC_VERSION_MAJOR@.@GCC_VERSION_MINOR@";
+    ExecPath = "/opt/local/bin/gcc-mp";      // This gets converted to the C++ variant automatically
+    IsAbstract = NO;
+    ShowInCompilerSelectionPopup = YES;
+    IsNoLongerSupported = NO;
+    PrecompStyle = pch;
+    SupportsPredictiveCompilation = Yes;
+    SupportsHeadermaps = No;
+    SupportsSeparateUserHeaderPaths = Yes;
+    SupportsSymbolSeparation = Yes;
+    SupportsMacOSXDeploymentTarget = Yes;
+    SupportsMacOSXMinVersionFlag = Yes;
+    SupportsIsysroot = Yes;
+    DashIFlagAcceptsHeadermaps = Yes;
+    UseCPlusPlusCompilerDriverWhenBundlizing = Yes;
+    
+    Options = (
+        
+        // Code generation
+        {
+            Name = LLVM_LTO;
+            Type = Boolean;
+            DefaultValue = NO;
+            CommandLineArgs = {
+                YES = (
+                    "-flto",
+                );
+                NO = ();
+            };
+            Architectures = (
+                i386,
+                x86_64,
+            );
+            Category = CodeGeneration;
+        },
+        
+    );
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BuildMachineOSBuild</key>
+	<string>4D199</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.apple.xcode.compilers.gcc.@GCC_VERSION_MAJOR@_@GCC_VERSION_MINOR@</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>GCC @GCC_VERSION_MAJOR@.@GCC_VERSION_MINOR@ Compiler Xcode Plug-in</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>6.2.1</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>934</string>
+	<key>DTCompiler</key>
+	<string>com.apple.compilers.gcc.@GCC_VERSION_MAJOR@_@GCC_VERSION_MINOR@</string>
+	<key>DTPlatformBuild</key>
+	<string></string>
+	<key>DTPlatformVersion</key>
+	<string>GM</string>
+	<key>DTSDKBuild</key>
+	<string>4D199</string>
+	<key>DTSDKName</key>
+	<string></string>
+	<key>DTXcode</key>
+	<string>0@GCC_VERSION_MAJOR@@GCC_VERSION_MINOR@@GCC_VERSION_MICRO@</string>
+	<key>DTXcodeBuild</key>
+	<string></string>
+	<key>XC4Compatible</key>
+	<true/>
+	<key>XCGCReady</key>
+	<string>Yes</string>
+	<key>XCPluginHasUI</key>
+	<string>No</string>
+</dict>
+</plist>

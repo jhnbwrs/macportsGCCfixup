@@ -1,0 +1,9 @@
+#!/bin/sh
+
+CMAKE=`which cmake`
+
+if [ -z "$CMAKE" ] ; then
+  echo "Unable to find cmake.  Either add cmake to your path, or download and install it from http://cmake.org/cmake/resources/software.html"
+  exit 1
+fi
+$CMAKE -G "Unix Makefiles"
