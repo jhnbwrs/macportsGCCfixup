@@ -1,0 +1,13 @@
+CMakeFiles
+CMakeCache.txt
+*[3-9].[0-9].xcspec
+Info.plist.gcc
+Info.plist.llvmgcc
+Makefile
+build
+cmake_install.cmake
+config.h
+i386-gcc-mp-[3-9].[0-9]
+i386-g++-mp-[3-9].[0-9]
+x86_64-g++-mp-[3-9].[0-9]
+x86_64-gcc-mp-[3-9].[0-9]
