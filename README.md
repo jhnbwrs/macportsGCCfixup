@@ -86,7 +86,7 @@ Victory!  Until I have to remember and repeat all of this stuff on a new machine
 
 ## Follow these 6 steps to easily replicate what I have done:
 
-1 . Download CMAKE at: http://cmake.org/cmake/resources/software.html. This project requires it.
+1. Download CMAKE at: http://cmake.org/cmake/resources/software.html. This project requires it.
 2. Install macports for your OSX version from this URL:  http://www.macports.org/install.php
 3. Install the UNIVERSAL version of gcc46 using macports (this might take a while):
     /opt/local/bin/port install gcc46 +universal
