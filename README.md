@@ -62,11 +62,13 @@ If you happen to be using Xcode 4.3+ the location is similar, except the root is
 
 Additionally, just creating a gcc 4.6 compiler plug-in didn’t work.  That wasn’t too surprising since there was a gcc 4.2 compiler definition there already, but you can't choose it in XCode.   I recalled hearing that Apple wasn’t going to support gcc anymore.  It was llvm-gcc or clang in Lion (10.7).  Since the LLVM-GCC-4.2 plug-in showed up in XCode, I decided that I would make two plug-ins: one for 4.6 and one that pretends to be llvm-gcc based on the 4.6 plug-in.  This actually worked:
 
+![GCC 4.6 shows up in Xcode](http://web.archive.org/web/20140803170624im_/http://implbits.com/Portals/0/MacportsGCC_SS.png)
+
  Well, that was exciting!  I even modified the compiler definition so it automatically compiles with the std=c++0x flag. (Why else would you ever go through this pain?)   I failed to include it originally and struggled for a few minutes to figure out why my C++ 11 code still wasn’t compiling.
 
 At this point, I tried to compile my project and I ran into an error where it couldn’t find a .hmap file.  I don’t really know what is going on here, but I discovered that you can turn off the use of header maps by adding a custom build setting to your project “USE_HEADERMAP=NO”.  Sounds like a plan to me.  If anyone has a better suggestion for this, please leave a comment:
 
-
+![USE_HEADERMAP](http://web.archive.org/web/20140803170624im_/http://implbits.com/Portals/0/img/HeaderMap.png)
 
 After adding this, I was good for about 30 seconds until I get to the portion of my project where some COCOA Objective-C UI stuff was being compiled.
 
@@ -82,7 +84,7 @@ After all of this, the project finally finished compiling and it works.
 
 Victory!  Until I have to remember and repeat all of this stuff on a new machine 3 months from now.   So I decided to make a little CMAKE project to create the compiler wrappers and extend XCode.  So now, you too can use MacPorts gcc from within XCode to create fat binaries.
 
-Follow these 6 steps to easily replicate what I have done:
+## Follow these 6 steps to easily replicate what I have done:
 
 1 . Download CMAKE at: http://cmake.org/cmake/resources/software.html. This project requires it.
 2. Install macports for your OSX version from this URL:  http://www.macports.org/install.php
@@ -93,12 +95,13 @@ Follow these 6 steps to easily replicate what I have done:
 6. Run “make” and then “make install”. 
 
 NOTE:  If you don’t install the universal version of macports GCC you will eventually get some linking errors when it comes to finding the c++ libs for the non-native architecture:
-
+```
 ld: warning: ignoring file /opt/local/lib/gcc46/libstdc++.dylib, file was built for unsupported file format which is not the architecture being linked (i386)
 ld: warning: ignoring file /opt/local/lib/gcc46/libgcc_ext.10.5.dylib, missing required architecture i386 in file
 ld: warning: ignoring file /opt/local/lib/gcc46/gcc/x86_64-apple-darwin10/4.6.2/libgcc.a, file was built for archive which is not the architecture being linked (i386)
+```
 
-Limitations/Caveats:
+## Limitations/Caveats:
 
 1 - I did all of this using XCode 4.2.1 on 10.7.  I tested it on 10.6 as well, but it probably won’t work on any earlier versions of OSX (I used Xcode 4.2 on 10.6 as well).
 2 - As earlier noted it only supports 32 bit and 64 bit intel.  More work would be required to get anything else working, so no ARM and no PPC
