@@ -91,8 +91,8 @@ Victory!  Until I have to remember and repeat all of this stuff on a new machine
 3. Install the UNIVERSAL version of gcc46 using macports (this might take a while):
     /opt/local/bin/port install gcc46 +universal
 4. Download and unzip the macportsgccfixup tarball I created from here: MacPorts GCC Fix-up
-5. Run ./configure (which wraps the cmake configuration command)
-6. Run “make” and then “make install”. 
+5. Run `./configure` (which wraps the cmake configuration command)
+6. Run `make` and then `make install`. 
 
 NOTE:  If you don’t install the universal version of macports GCC you will eventually get some linking errors when it comes to finding the c++ libs for the non-native architecture:
 ```
@@ -103,12 +103,12 @@ ld: warning: ignoring file /opt/local/lib/gcc46/gcc/x86_64-apple-darwin10/4.6.2/
 
 ## Limitations/Caveats:
 
-1 - I did all of this using XCode 4.2.1 on 10.7.  I tested it on 10.6 as well, but it probably won’t work on any earlier versions of OSX (I used Xcode 4.2 on 10.6 as well).
-2 - As earlier noted it only supports 32 bit and 64 bit intel.  More work would be required to get anything else working, so no ARM and no PPC
-3 - It almost certainly won’t work with XCode 4.3 yet, but that is alright since I don’t think macports works with XCode 4.3 yet either.
-4-- It MIGHT work with XCode 3.6.x.  It would need to be tested.
-5- Any c++ binaries built using GCC 4.6 will have a dependency upon the c++ libs in /opt/local/lib.  If you want to distribute something you have built this way you will either need to first install the macports GCC on the target machine, or distribute all of the c++ libraries in your distribution.
+1. I did all of this using XCode 4.2.1 on 10.7.  I tested it on 10.6 as well, but it probably won’t work on any earlier versions of OSX (I used Xcode 4.2 on 10.6 as well).
+2. As earlier noted it only supports 32 bit and 64 bit intel.  More work would be required to get anything else working, so no ARM and no PPC
+3. It almost certainly won’t work with XCode 4.3 yet, but that is alright since I don’t think macports works with XCode 4.3 yet either.
+4. It MIGHT work with XCode 3.6.x.  It would need to be tested.
+5. Any c++ binaries built using GCC 4.6 will have a dependency upon the c++ libs in /opt/local/lib.  If you want to distribute something you have built this way you will either need to first install the macports GCC on the target machine, or distribute all of the c++ libraries in your distribution.
 
-As aFinal note: it should be easy to change version of GCC that all this works with by simple changing the version of GCC in the CMakeLists.txt.  I haven’t tested it yet, but if you want 4.7 you might give it a try.
+As aFinal note: it should be easy to change version of GCC that all this works with by simple changing the version of GCC in the `CMakeLists.txt`.  I haven’t tested it yet, but if you want 4.7 you might give it a try.
 
 Get the code here:  https://github.com/jhnbwrs/macportsGCCfixup
