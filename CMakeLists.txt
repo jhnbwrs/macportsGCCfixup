@@ -1,9 +1,11 @@
 cmake_minimum_required(VERSION 2.8)
 project (install-mp-gcc)
 set (CMAKE_INSTALL_PREFIX "/opt/local")
-set (GCC_VERSION_MAJOR "4")
-set (GCC_VERSION_MINOR "6")
-set (GCC_VERSION_MICRO "2")
+set (GCC_VERSION "4.8.5" CACHE STRIING  "GCC version to build the driver for")
+string (REGEX MATCHALL "[0-9]+" GCC_VERSION_COMPONENTS ${GCC_VERSION})
+list (GET GCC_VERSION_COMPONENTS 0 GCC_VERSION_MAJOR)
+list (GET GCC_VERSION_COMPONENTS 1 GCC_VERSION_MINOR)
+list (GET GCC_VERSION_COMPONENTS 2 GCC_VERSION_MICRO)
 set (install-mp-gcc_VERSION_MAJOR 1)
 set (install-mp-gcc_VERSION_MINOR 0)
 set (install-mp-gcc_VERSION_MICRO 0)
@@ -11,6 +13,9 @@ set (install-mp-gcc_VERSION_MICRO 0)
 set (CMAKE_INSTALL_PREFIX "/opt/local")
 
 CONFIGURE_FILE(${PROJECT_SOURCE_DIR}/config.h.in ${PROJECT_BINARY_DIR}/config.h)
+# add the binary tree directory to the search path for 
+# include files
+include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
 
 if( NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin" )
     MESSAGE( FATAL_ERROR
@@ -40,7 +45,8 @@ endif()
 
 find_path( XCODE_PLUGIN_PATH GCC\ 4.2.xcplugin
            /Developer/Library/Xcode/PrivatePlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins
-           /Developer/Library/Xcode/Plug-ins )
+           /Developer/Library/Xcode/Plug-ins
+           /Applications/Xcode.app/Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins )
 
 if( NOT XCODE_PLUGIN_PATH )
      MESSAGE( "WARNING: Unable to find xcode xcplugin path, MacPorts GCC will not be integrated with Xcode.  Commandline multi arch builds will still be possible" )
@@ -54,6 +60,8 @@ SET_TARGET_PROPERTIES(  gcc-mp
                         COMPILE_FLAGS "-DBUILD_C_COMPILER" )
 
 find_path( DARWIN_H_INCLUDE_PATH darwin.h
+           /opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/gcc/i386-apple-darwin${OSVERSION}/${GCC_VERSION_MAJOR}.${GCC_VERSION_MINOR}.${GCC_VERSION_MICRO}/plugin/include/config/i386/
+           /opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/gcc/i386-apple-darwin${OSVERSION}/${GCC_VERSION_MAJOR}.${GCC_VERSION_MINOR}.${GCC_VERSION_MICRO}/plugin/include/config/
            /opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/gcc/x86_64-apple-darwin${OSVERSION}/${GCC_VERSION_MAJOR}.${GCC_VERSION_MINOR}.${GCC_VERSION_MICRO}/plugin/include/config/i386/
            /opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/gcc/x86_64-apple-darwin${OSVERSION}/${GCC_VERSION_MAJOR}.${GCC_VERSION_MINOR}.${GCC_VERSION_MICRO}/plugin/include/config/ )
 
@@ -67,6 +75,7 @@ endif()
 
 
 find_path( LIBIBERTY_INCLUDES libiberty.h
+           /opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/gcc/i386-apple-darwin${OSVERSION}/${GCC_VERSION_MAJOR}.${GCC_VERSION_MINOR}.${GCC_VERSION_MICRO}/plugin/include/
            /opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/gcc/x86_64-apple-darwin${OSVERSION}/${GCC_VERSION_MAJOR}.${GCC_VERSION_MINOR}.${GCC_VERSION_MICRO}/plugin/include/ )
 
 if( LIBIBERTY_INCLUDES )
