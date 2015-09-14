@@ -60,20 +60,23 @@ SET_TARGET_PROPERTIES(  gcc-mp
                         COMPILE_FLAGS "-DBUILD_C_COMPILER" )
 
 find_path( DARWIN_H_INCLUDE_PATH darwin.h
-           /opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/gcc/${CMAKE_HOST_SYSTEM_PROCESSOR}-apple-darwin${OSVERSION}/${GCC_VERSION_MAJOR}.${GCC_VERSION_MINOR}.${GCC_VERSION_MICRO}/plugin/include/config/i386/
-           /opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/gcc/${CMAKE_HOST_SYSTEM_PROCESSOR}-apple-darwin${OSVERSION}/${GCC_VERSION_MAJOR}.${GCC_VERSION_MINOR}.${GCC_VERSION_MICRO}/plugin/include/config/ )
+           /opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/gcc/i386-apple-darwin${OSVERSION}/${GCC_VERSION_MAJOR}.${GCC_VERSION_MINOR}.${GCC_VERSION_MICRO}/plugin/include/config/i386/
+           /opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/gcc/i386-apple-darwin${OSVERSION}/${GCC_VERSION_MAJOR}.${GCC_VERSION_MINOR}.${GCC_VERSION_MICRO}/plugin/include/config/
+           /opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/gcc/x86_64-apple-darwin${OSVERSION}/${GCC_VERSION_MAJOR}.${GCC_VERSION_MINOR}.${GCC_VERSION_MICRO}/plugin/include/config/i386/
+           /opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/gcc/x86_64-apple-darwin${OSVERSION}/${GCC_VERSION_MAJOR}.${GCC_VERSION_MINOR}.${GCC_VERSION_MICRO}/plugin/include/config/ )
 
 if( DARWIN_H_INCLUDE_PATH )
     MESSAGE( "Found darwin.h at ${DARWIN_H_INCLUDE_PATH}" )
     include_directories( ${DARWIN_H_INCLUDE_PATH} )
 else()
-    MESSAGE( "/opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/gcc/${CMAKE_HOST_SYSTEM_PROCESSOR}-apple-darwin${OSVERSION}/${GCC_VERSION_MAJOR}.${GCC_VERSION_MINOR}.${GCC_VERSION_MICRO}/plugin/include/config/i386" )
+    MESSAGE( "/opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/gcc/x86_64-apple-darwin${OSVERSION}/${GCC_VERSION_MAJOR}.${GCC_VERSION_MINOR}.${GCC_VERSION_MICRO}/plugin/include/config/i386" )
     MESSAGE( FATAL_ERROR "Unable to find darwin.h.  Find darwin.h and add the path to the DARWIN_H_INCLUDE_PATH search path list in CMakeLists.txt" )
 endif()
 
 
 find_path( LIBIBERTY_INCLUDES libiberty.h
-           /opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/gcc/${CMAKE_HOST_SYSTEM_PROCESSOR}-apple-darwin${OSVERSION}/${GCC_VERSION_MAJOR}.${GCC_VERSION_MINOR}.${GCC_VERSION_MICRO}/plugin/include/ )
+           /opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/gcc/i386-apple-darwin${OSVERSION}/${GCC_VERSION_MAJOR}.${GCC_VERSION_MINOR}.${GCC_VERSION_MICRO}/plugin/include/
+           /opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/gcc/x86_64-apple-darwin${OSVERSION}/${GCC_VERSION_MAJOR}.${GCC_VERSION_MINOR}.${GCC_VERSION_MICRO}/plugin/include/ )
 
 if( LIBIBERTY_INCLUDES )
     MESSAGE( "Found libiberty includes at ${LIBIBERTY_INCLUDES}" )
@@ -84,7 +87,7 @@ endif()
 
 find_library( IBERTY_LIB 
               NAMES libiberty.a
-              PATHS /opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/${CMAKE_HOST_SYSTEM_PROCESSOR}/ /opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/ )
+              PATHS /opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/x86_64/ /opt/local/lib/gcc${GCC_VERSION_MAJOR}${GCC_VERSION_MINOR}/ )
 
 if( IBERTY_LIB )
     MESSAGE( "Found libiberty at ${IBERTY_LIB}" )
